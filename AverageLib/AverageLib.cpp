@@ -1,6 +1,4 @@
-﻿#include <array>
-#include <string>
-#include "Average.h"
+﻿#include "Average.h"
 using namespace std;
 
 double average(array<array<int, maxColumns>, maxRows>& array, size_t rows, size_t columns)
