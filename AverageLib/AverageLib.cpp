@@ -20,7 +20,6 @@ double average(array<array<int, maxColumns>, maxRows>& array, size_t rows, size_
                     count_elements++;
                 }
             }
-
         }
     }
     if (sum_all == 0)
