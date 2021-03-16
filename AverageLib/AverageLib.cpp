@@ -1,5 +1,4 @@
-﻿#include <iostream>
-#include <array>
+﻿#include <array>
 #include <string>
 #include "Average.h"
 using namespace std;
@@ -12,15 +11,11 @@ double average(array<array<int, maxColumns>, maxRows>& array, size_t rows, size_
     {
         for (size_t column = 0; column < columns; column++)
         {
-            int inner_sum = 0;
             int element = array[row][column];
             string str_element = to_string(element);
             if (str_element.length() > 1)
             {
-                for (int k = str_element.length() - 2; k >= 0; k -= 2)
-                {
-                    inner_sum += (int)str_element[k] - 48;
-                }
+                int inner_sum = count_inner_sum(str_element);
                 if (inner_sum % 2 == 0)
                 {
                     sum_all += element;
@@ -38,4 +33,14 @@ double average(array<array<int, maxColumns>, maxRows>& array, size_t rows, size_
     {
         return sum_all / count_elements;
     }
+}
+
+int count_inner_sum(string str_element)
+{
+    int inner_sum = 0;
+    for (int k = str_element.length() - 2; k >= 0; k -= 2)
+    {
+        inner_sum += (int)str_element[k] - 48;
+    }
+    return inner_sum;
 }
