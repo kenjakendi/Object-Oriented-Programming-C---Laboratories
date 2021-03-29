@@ -1,0 +1,11 @@
+﻿################################################################################
+# Ten plik .gitignore został utworzony automatycznie przez Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/LAB3 - Invoice Class/Invoice/.vs/Invoice/v16/ipch
+/LAB3 - Invoice Class/Invoice/.vs/Invoice/v16/.suo
+/LAB3 - Invoice Class/Invoice/.vs/Invoice/v16/Browse.VC.db
+/LAB3 - Invoice Class/Invoice/.vs/Invoice/v16/Browse.VC.db-shm
+/LAB3 - Invoice Class/Invoice/.vs/Invoice/v16/Browse.VC.db-wal
+/LAB3 - Invoice Class/Invoice/.vs/Invoice/v16/Browse.VC.opendb
