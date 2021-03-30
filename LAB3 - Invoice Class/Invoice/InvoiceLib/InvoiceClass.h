@@ -9,6 +9,7 @@ private:
 	std::string adress;
 	std::vector <std::string> items;
 public:
+	Invoice(std::string name, std::string adress);
 	Invoice(std::string name, std::string adress, std::vector <std::string> items);
 	std::string getName() const;
 	std::string getAdress() const;

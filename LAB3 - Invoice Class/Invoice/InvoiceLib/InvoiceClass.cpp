@@ -2,6 +2,13 @@
 
 using namespace std;
 
+Invoice::Invoice(string name, string adress)
+{
+	this->name = name;
+	this->adress = adress;
+	this->items = {};
+}
+
 Invoice::Invoice(string name, string adress, vector <string> items)
 {
 	this->name = name;
