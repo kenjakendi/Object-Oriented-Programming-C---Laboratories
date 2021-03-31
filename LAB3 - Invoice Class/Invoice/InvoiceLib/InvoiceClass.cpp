@@ -45,3 +45,24 @@ void Invoice::setItems(vector <string> const items)
 {
 	this->items = items;
 }
+
+void Invoice::addItem(string const item_name)
+{
+	vector <string> items = this->getItems();
+	items.push_back(item_name);
+	this->setItems(items);
+}
+
+void Invoice::removeItem(string item_name)
+{
+	vector <string> items = this->getItems();
+	for (int i = 0; i <= items.size(); i++)
+	{
+		if (items[i] == item_name)
+		{
+			items.erase(items.begin() + i);
+			i--;
+		}
+	}
+	this->setItems(items);
+}
