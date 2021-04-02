@@ -35,6 +35,30 @@ namespace InvoiceUnitTest
 			vectorcompare(items, inv.getItems());
 		}
 
+		TEST_METHOD(InvoiceSetNameTest)
+		{
+			Invoice inv("Anna", "Warsaw", { "Apple" });
+			std::string name = "Michal";
+			inv.setName(name);
+			Assert::AreEqual(name, inv.getName());
+		}
+
+		TEST_METHOD(InvoiceSetAdressTest)
+		{
+			Invoice inv("Anna", "Warsaw", { "Apple" });
+			std::string adress = "Lublin";
+			inv.setAdress(adress);
+			Assert::AreEqual(adress, inv.getAdress());
+		}
+
+		TEST_METHOD(InvoiceSetItemsTest)
+		{
+			Invoice inv("Anna", "Warsaw", { "Apple" });
+			std::vector<std::string> items = { "Banana" };
+			inv.setItems(items);
+			vectorcompare(items, inv.getItems());
+		}
+
 		TEST_METHOD(AddOneItemTest)
 		{
 			Invoice inv("Anna", "Warsaw");
@@ -151,6 +175,30 @@ namespace InvoiceUnitTest
 			std::string const adress = "Warsaw";
 			Invoice inv(name, adress, { "a","b" });
 			Invoice inv2(name, adress, { "c" });
+			Invoice sub = inv - inv2;
+			Assert::AreEqual(name, sub.getName());
+			Assert::AreEqual(adress, sub.getAdress());
+			vectorcompare({ "a","b" }, sub.getItems());
+		}
+
+		TEST_METHOD(MinusOperatorWithInvWrongAdress)
+		{
+			std::string const name = "Anna";
+			std::string const adress = "Warsaw";
+			Invoice inv(name, adress, { "a","b" });
+			Invoice inv2(name, "Lublin", { "a","c" });
+			Invoice sub = inv - inv2;
+			Assert::AreEqual(name, sub.getName());
+			Assert::AreEqual(adress, sub.getAdress());
+			vectorcompare({ "a","b" }, sub.getItems());
+		}
+
+		TEST_METHOD(MinusOperatorWithInvWrongName)
+		{
+			std::string const name = "Anna";
+			std::string const adress = "Warsaw";
+			Invoice inv(name, adress, { "a","b" });
+			Invoice inv2("Michal", adress, { "a","c" });
 			Invoice sub = inv - inv2;
 			Assert::AreEqual(name, sub.getName());
 			Assert::AreEqual(adress, sub.getAdress());
