@@ -2,13 +2,6 @@
 
 using namespace std;
 
-Invoice::Invoice(string name, string adress)
-{
-	this->name = name;
-	this->adress = adress;
-	this->items = {};
-}
-
 Invoice::Invoice(string name, string adress, vector <string> items)
 {
 	this->name = name;
@@ -46,17 +39,14 @@ void Invoice::setItems(vector <string> const items)
 	this->items = items;
 }
 
-void Invoice::addItem(string const item_name)
+void Invoice::addItem(string const& item_name)
 {
-	vector <string> items = this->getItems();
 	items.push_back(item_name);
-	this->setItems(items);
 }
 
-void Invoice::removeItem(string item_name)
+void Invoice::removeItem(string const& item_name)
 {
-	vector <string> items = this->getItems();
-	for (int i = 0; i <= items.size(); i++)
+	for (int i = 0; i < items.size(); i++)
 	{
 		if (items[i] == item_name)
 		{
@@ -64,5 +54,60 @@ void Invoice::removeItem(string item_name)
 			i--;
 		}
 	}
-	this->setItems(items);
 }
+
+Invoice Invoice::operator+(Invoice const& invoice) const
+{
+	if ((getName() == invoice.getName()) && (getAdress() == invoice.getAdress()))
+	{
+		vector <string> items = getItems();
+		for (int i = 0; i < invoice.getItems().size(); i++)
+		{
+			items.push_back(invoice.getItems()[i]);
+		}
+		return Invoice(getName(), getAdress(), items);
+	}
+	else
+	{
+		return Invoice(getName(), getAdress(), getItems());
+	}
+}
+
+Invoice Invoice::operator-(Invoice const& invoice) const
+{
+	if ((getName() == invoice.getName()) && (getAdress() == invoice.getAdress()))
+	{
+		vector <string> main_items = getItems();
+		for (int i = 0; i < invoice.getItems().size(); i++)
+		{
+			string item_name = invoice.getItems()[i];
+			for (int i = 0; i < main_items.size(); i++)
+			{
+				if (main_items[i] == item_name)
+				{
+					main_items.erase(main_items.begin() + i);
+					i--;
+				}
+			}
+		}
+		return Invoice(getName(), getAdress(), main_items);
+	}
+	else 
+	{
+		return Invoice(getName(), getAdress(), getItems());
+	}
+}
+/*
+ostream& operator<< (ostream& os, const Invoice& invoice)
+{
+	string const name = invoice.getName();
+	string const adress = invoice.getAdress();
+	const vector <string> items = invoice.getItems();
+	os << name << "/t" << adress << endl;
+	for (int i = 0; i < items.size(); i++)
+	{
+		os << items[i] << endl;
+	}
+	return os;
+}
+*/
