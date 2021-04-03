@@ -58,45 +58,53 @@ void Invoice::removeItem(string const& item_name)
 
 Invoice Invoice::operator+(Invoice const& invoice) const
 {
+	Invoice sum = Invoice(getName(), getAdress(), getItems());
 	if ((getName() == invoice.getName()) && (getAdress() == invoice.getAdress()))
 	{
-		vector <string> items = getItems();
 		for (int i = 0; i < invoice.getItems().size(); i++)
 		{
-			items.push_back(invoice.getItems()[i]);
+			sum.addItem(invoice.getItems()[i]);
 		}
-		return Invoice(getName(), getAdress(), items);
+		return sum;
 	}
 	else
 	{
-		return Invoice(getName(), getAdress(), getItems());
+		return sum;
 	}
 }
 
 Invoice Invoice::operator-(Invoice const& invoice) const
 {
+	Invoice sub = Invoice(getName(), getAdress(), getItems());
 	if ((getName() == invoice.getName()) && (getAdress() == invoice.getAdress()))
 	{
-		vector <string> main_items = getItems();
 		for (int i = 0; i < invoice.getItems().size(); i++)
 		{
 			string item_name = invoice.getItems()[i];
-			for (int i = 0; i < main_items.size(); i++)
-			{
-				if (main_items[i] == item_name)
-				{
-					main_items.erase(main_items.begin() + i);
-					i--;
-				}
-			}
+			sub.removeItem(item_name);
 		}
-		return Invoice(getName(), getAdress(), main_items);
+		return sub;
 	}
 	else 
 	{
-		return Invoice(getName(), getAdress(), getItems());
+		return sub;
 	}
 }
+
+Invoice Invoice::operator+(string const& item_name) const
+{
+	Invoice invoice = Invoice(getName(), getAdress(), getItems());
+	invoice.addItem(item_name);
+	return invoice;
+}
+
+Invoice Invoice::operator-(string const& item_name) const
+{
+	Invoice invoice = Invoice(getName(), getAdress(), getItems());
+	invoice.removeItem(item_name);
+	return invoice;
+}
+
 /*
 ostream& operator<< (ostream& os, const Invoice& invoice)
 {
