@@ -11,5 +11,5 @@ int main()
     Invoice inv2 = Invoice("Anna", "Warsaw");
     cin >> inv2;
     cout << inv2;
-
+    return 0;
 }
