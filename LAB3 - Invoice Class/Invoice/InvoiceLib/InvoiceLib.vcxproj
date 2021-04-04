@@ -152,9 +152,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="InvoiceClass.cpp" />
+    <ClCompile Include="ItemClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InvoiceClass.h" />
+    <ClInclude Include="ItemClass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
