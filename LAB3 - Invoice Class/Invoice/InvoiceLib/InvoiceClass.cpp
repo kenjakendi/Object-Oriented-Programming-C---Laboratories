@@ -56,10 +56,22 @@ void Invoice::removeItem(string const& item_name)
 	}
 }
 
+bool Invoice::sameData(Invoice const& invoice)const
+{
+	if ((getName() == invoice.getName()) && (getAdress() == invoice.getAdress()))
+	{
+		return true;
+	}
+	else 
+	{
+		return false;
+	}
+}
+
 Invoice Invoice::operator+(Invoice const& invoice) const
 {
 	Invoice sum = Invoice(getName(), getAdress(), getItems());
-	if ((getName() == invoice.getName()) && (getAdress() == invoice.getAdress()))
+	if (sameData(invoice))
 	{
 		for (int i = 0; i < invoice.getItems().size(); i++)
 		{
@@ -76,12 +88,11 @@ Invoice Invoice::operator+(Invoice const& invoice) const
 Invoice Invoice::operator-(Invoice const& invoice) const
 {
 	Invoice sub = Invoice(getName(), getAdress(), getItems());
-	if ((getName() == invoice.getName()) && (getAdress() == invoice.getAdress()))
+	if (sameData(invoice))
 	{
 		for (int i = 0; i < invoice.getItems().size(); i++)
 		{
-			string item_name = invoice.getItems()[i];
-			sub.removeItem(item_name);
+			sub.removeItem(invoice.getItems()[i]);
 		}
 		return sub;
 	}
@@ -107,12 +118,24 @@ Invoice Invoice::operator-(string const& item_name) const
 
 void Invoice::operator+=(Invoice const& invoice)
 {
-
+	if (sameData(invoice))
+	{
+		for (int i = 0; i < invoice.getItems().size(); i++)
+		{
+			addItem(invoice.getItems()[i]);
+		}
+	}
 }
 
 void Invoice::operator-=(Invoice const& invoice)
 {
-
+	if (sameData(invoice))
+	{
+		for (int i = 0; i < invoice.getItems().size(); i++)
+		{
+			removeItem(invoice.getItems()[i]);
+		}
+	}
 }
 
 void Invoice::operator+=(std::string const& item_name)
@@ -124,6 +147,7 @@ void Invoice::operator-=(std::string const& item_name)
 {
 	removeItem(item_name);
 }
+
 /*
 ostream& operator<< (ostream& os, const Invoice& invoice)
 {

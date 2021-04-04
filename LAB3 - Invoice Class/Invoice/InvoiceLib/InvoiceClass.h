@@ -9,6 +9,7 @@ private:
 	std::string name;
 	std::string adress;
 	std::vector <std::string> items;
+	bool sameData(Invoice const& invoice) const;
 public:
 	Invoice(std::string name, std::string adress, std::vector <std::string> items = {});
 	std::string getName() const;
