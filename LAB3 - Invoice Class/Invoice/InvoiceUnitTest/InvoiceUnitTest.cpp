@@ -268,6 +268,102 @@ namespace InvoiceUnitTest
 			sub -= "c";
 			vectorcompare({ "a","b","d","a","a" }, sub.getItems());
 		}
+
+		TEST_METHOD(PlusEqOperatorWithInvSimple)
+		{
+			std::string const name = "Anna";
+			std::string const adress = "Warsaw";
+			Invoice sum(name, adress, { "a","b" });
+			Invoice inv(name, adress, { "a","c" });
+			sum += inv;
+			Assert::AreEqual(name, sum.getName());
+			Assert::AreEqual(adress, sum.getAdress());
+			vectorcompare({ "a","b","a","c" }, sum.getItems());
+		}
+
+		TEST_METHOD(PlusEqOperatorWithInvOtherName)
+		{
+			std::string const name = "Anna";
+			std::string const adress = "Warsaw";
+			Invoice sum(name, adress, { "a","b" });
+			Invoice inv("Michal", adress, { "a","c" });
+			sum += inv;
+			Assert::AreEqual(name, sum.getName());
+			Assert::AreEqual(adress, sum.getAdress());
+			vectorcompare({ "a","b" }, sum.getItems());
+		}
+
+		TEST_METHOD(PlusEqOperatorWithInvOtherAdress)
+		{
+			std::string const name = "Anna";
+			std::string const adress = "Warsaw";
+			Invoice sum(name, adress, { "a","b" });
+			Invoice inv(name, "Lublin", { "a","c" });
+			sum += inv;
+			Assert::AreEqual(name, sum.getName());
+			Assert::AreEqual(adress, sum.getAdress());
+			vectorcompare({ "a","b" }, sum.getItems());
+		}
+
+		TEST_METHOD(MinusEqOperatorWithInvSimple)
+		{
+			std::string const name = "Anna";
+			std::string const adress = "Warsaw";
+			Invoice sub(name, adress, { "a","b" });
+			Invoice inv(name, adress, { "a","c" });
+			sub -= inv;
+			Assert::AreEqual(name, sub.getName());
+			Assert::AreEqual(adress, sub.getAdress());
+			vectorcompare({ "b" }, sub.getItems());
+		}
+
+		TEST_METHOD(MinusEqOperatorWithInvMoreItems)
+		{
+			std::string const name = "Anna";
+			std::string const adress = "Warsaw";
+			Invoice sub(name, adress, { "a","b","c","d","a","c","a" });
+			Invoice inv(name, adress, { "a","c" });
+			sub -= inv;
+			Assert::AreEqual(name, sub.getName());
+			Assert::AreEqual(adress, sub.getAdress());
+			vectorcompare({ "b","d" }, sub.getItems());
+		}
+
+		TEST_METHOD(MinusEqOperatorWithInvNoCommonItems)
+		{
+			std::string const name = "Anna";
+			std::string const adress = "Warsaw";
+			Invoice sub(name, adress, { "a","b" });
+			Invoice inv(name, adress, { "c" });
+			sub -= inv;
+			Assert::AreEqual(name, sub.getName());
+			Assert::AreEqual(adress, sub.getAdress());
+			vectorcompare({ "a","b" }, sub.getItems());
+		}
+
+		TEST_METHOD(MinusEqOperatorWithInvWrongAdress)
+		{
+			std::string const name = "Anna";
+			std::string const adress = "Warsaw";
+			Invoice sub(name, adress, { "a","b" });
+			Invoice inv(name, "Lublin", { "a","c" });
+			sub -= inv;
+			Assert::AreEqual(name, sub.getName());
+			Assert::AreEqual(adress, sub.getAdress());
+			vectorcompare({ "a","b" }, sub.getItems());
+		}
+
+		TEST_METHOD(MinusEqOperatorWithInvWrongName)
+		{
+			std::string const name = "Anna";
+			std::string const adress = "Warsaw";
+			Invoice sub(name, adress, { "a","b" });
+			Invoice inv("Michal", adress, { "a","c" });
+			sub -= inv;
+			Assert::AreEqual(name, sub.getName());
+			Assert::AreEqual(adress, sub.getAdress());
+			vectorcompare({ "a","b" }, sub.getItems());
+		}
 	};
 }
 
