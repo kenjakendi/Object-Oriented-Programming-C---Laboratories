@@ -2,35 +2,36 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include "ItemClass.h"
 
 class Invoice
 {
 private:
 	std::string name;
 	std::string adress;
-	std::vector <std::string> items;
+	std::vector <Item> items;
 	bool sameData(Invoice const& invoice) const;
 public:
-	Invoice(std::string name, std::string adress, std::vector <std::string> items = {});
+	Invoice(std::string name, std::string adress, std::vector <Item> items = {});
 	std::string getName() const;
 	std::string getAdress() const;
-	std::vector <std::string> getItems() const;
+	std::vector <Item> getItems() const;
 	void setName(std::string const name);
 	void setAdress(std::string const adress);
-	void setItems(std::vector <std::string> const items);
+	void setItems(std::vector <Item> const items);
 
-	void addItem(std::string const& item_name);
-	void removeItem(std::string const& item_name);
+	void addItem(Item const& item);
+	void removeItem(Item const& item);
 
 	Invoice operator+(Invoice const& invoice) const;
 	Invoice operator-(Invoice const& invoice) const;
-	Invoice operator+(std::string const& item_name) const;
-	Invoice operator-(std::string const& item_name) const;
+	Invoice operator+(Item const& item) const;
+	Invoice operator-(Item const& item) const;
 
 	void operator+=(Invoice const& invoice);
 	void operator-=(Invoice const& invoice);
-	void operator+=(std::string const& item_name);
-	void operator-=(std::string const& item_name);
+	void operator+=(Item const& item);
+	void operator-=(Item const& item);
 
 	friend std::ostream& operator<< (std::ostream& os, const Invoice& invoice);
 	friend std::istream& operator>> (std::istream& is, Invoice& invoice);

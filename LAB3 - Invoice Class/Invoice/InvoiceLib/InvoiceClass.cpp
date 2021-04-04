@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Invoice::Invoice(string name, string adress, vector <string> items)
+Invoice::Invoice(string name, string adress, vector <Item> items)
 {
 	this->name = name;
 	this->adress = adress;
@@ -19,7 +19,7 @@ string Invoice::getAdress() const
 	return adress;
 }
 
-vector <string> Invoice::getItems() const
+vector <Item> Invoice::getItems() const
 {
 	return items;
 }
@@ -34,21 +34,21 @@ void Invoice::setAdress(string const adress)
 	this->adress = adress;
 }
 
-void Invoice::setItems(vector <string> const items)
+void Invoice::setItems(vector <Item> const items)
 {
 	this->items = items;
 }
 
-void Invoice::addItem(string const& item_name)
+void Invoice::addItem(Item const& item)
 {
-	items.push_back(item_name);
+	items.push_back(item);
 }
 
-void Invoice::removeItem(string const& item_name)
+void Invoice::removeItem(Item const& item)
 {
 	for (int i = 0; i < items.size(); i++)
 	{
-		if (items[i] == item_name)
+		if (items[i] == item)
 		{
 			items.erase(items.begin() + i);
 			i--;
@@ -102,17 +102,17 @@ Invoice Invoice::operator-(Invoice const& invoice) const
 	}
 }
 
-Invoice Invoice::operator+(string const& item_name) const
+Invoice Invoice::operator+(Item const& item) const
 {
 	Invoice invoice = Invoice(getName(), getAdress(), getItems());
-	invoice.addItem(item_name);
+	invoice.addItem(item);
 	return invoice;
 }
 
-Invoice Invoice::operator-(string const& item_name) const
+Invoice Invoice::operator-(Item const& item) const
 {
 	Invoice invoice = Invoice(getName(), getAdress(), getItems());
-	invoice.removeItem(item_name);
+	invoice.removeItem(item);
 	return invoice;
 }
 
@@ -138,25 +138,25 @@ void Invoice::operator-=(Invoice const& invoice)
 	}
 }
 
-void Invoice::operator+=(std::string const& item_name)
+void Invoice::operator+=(Item const& item)
 {
-	addItem(item_name);
+	addItem(item);
 }
 
-void Invoice::operator-=(std::string const& item_name)
+void Invoice::operator-=(Item const& item)
 {
-	removeItem(item_name);
+	removeItem(item);
 }
 
 ostream& operator<< (ostream& os, const Invoice& invoice)
 {
 	string const name = invoice.getName();
 	string const adress = invoice.getAdress();
-	const vector <string> items = invoice.getItems();
+	const vector <Item> items = invoice.getItems();
 	os << name << " " << adress << endl;
 	for (int i = 0; i < items.size(); i++)
 	{
-		os << items[i] << endl;
+		os << items[i].getName() << endl;
 	}
 	os << "end" << endl;
 	return os;
@@ -169,12 +169,12 @@ istream& operator>> (istream& is, Invoice& invoice)
 	is >> name >> adress;
 	invoice.setName(name);
 	invoice.setAdress(adress);
-	string item;
-	is >> item;
-	while (item != "end")
+	string item_name;
+	is >> item_name;
+	while (item_name != "end")
 	{
-		invoice.addItem(item);
-		is >> item;
+		invoice.addItem(Item(item_name));
+		is >> item_name;
 	}
 	return is;
 }
