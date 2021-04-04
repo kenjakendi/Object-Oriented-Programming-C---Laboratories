@@ -15,7 +15,7 @@ namespace InvoiceUnitTest
 	{
 	public:
 		
-		TEST_METHOD(ConstructorNoItemsParameter)
+		TEST_METHOD(ConstructorNoItems)
 		{
 			std::string name = "Anna";
 			std::string adress = "Warsaw";
@@ -26,7 +26,7 @@ namespace InvoiceUnitTest
 			vectorcompare({},inv.getItems());
 		}
 
-		TEST_METHOD(ConstructorWithItemsParameter)
+		TEST_METHOD(ConstructorWithItems)
 		{
 			std::string name = "Anna";
 			std::string adress = "Warsaw";
@@ -38,7 +38,7 @@ namespace InvoiceUnitTest
 			vectorcompare(items, inv.getItems());
 		}
 
-		TEST_METHOD(InvoiceSetNameTest)
+		TEST_METHOD(SetName)
 		{
 			Item Apple = Item("Apple");
 			Invoice inv("Anna", "Warsaw", { Apple });
@@ -47,7 +47,7 @@ namespace InvoiceUnitTest
 			Assert::AreEqual(name, inv.getName());
 		}
 
-		TEST_METHOD(InvoiceSetAdressTest)
+		TEST_METHOD(SetAdress)
 		{
 			Item Apple = Item("Apple");
 			Invoice inv("Anna", "Warsaw", { Apple });
@@ -56,7 +56,7 @@ namespace InvoiceUnitTest
 			Assert::AreEqual(adress, inv.getAdress());
 		}
 
-		TEST_METHOD(InvoiceSetItemsTest)
+		TEST_METHOD(SetItems)
 		{
 			Item Apple = Item("Apple");
 			Item Banana= Item("Banana");
@@ -66,7 +66,7 @@ namespace InvoiceUnitTest
 			vectorcompare(items, inv.getItems());
 		}
 
-		TEST_METHOD(AddOneItemTest)
+		TEST_METHOD(AddItemOneItem)
 		{
 			Item Apple = Item("Apple");
 			Invoice inv("Anna", "Warsaw");
@@ -74,7 +74,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ Apple }, inv.getItems());
 		}
 
-		TEST_METHOD(AddMoreItemsTest)
+		TEST_METHOD(AddItemMoreItems)
 		{
 			Item Apple = Item("Apple");
 			Item Banana = Item("Banana");
@@ -84,7 +84,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ Apple, Banana}, inv.getItems());
 		}
 
-		TEST_METHOD(AddItemWithBaseItemsTest)
+		TEST_METHOD(AddItemWithBaseItems)
 		{
 			Item Apple = Item("Apple");
 			Item Banana = Item("Banana");
@@ -93,7 +93,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ Apple, Banana }, inv.getItems());
 		}
 
-		TEST_METHOD(RemoveNoItemTest)
+		TEST_METHOD(RemoveItemNoItemRemoved)
 		{
 			Item Apple = Item("Apple");
 			Item Banana = Item("Banana");
@@ -102,7 +102,7 @@ namespace InvoiceUnitTest
 			vectorcompare({Apple}, inv.getItems());
 		}
 
-		TEST_METHOD(RemoveOneItemTest)
+		TEST_METHOD(RemoveItemOneItem)
 		{
 			Item Apple = Item("Apple");
 			Invoice inv("Anna", "Warsaw", { Apple });
@@ -110,7 +110,7 @@ namespace InvoiceUnitTest
 			vectorcompare({}, inv.getItems());
 		}
 
-		TEST_METHOD(RemoveItemsWithSameName1Test)
+		TEST_METHOD(RemoveItemMoreWithSameName1)
 		{
 			Item d = Item("d");
 			Item c = Item("c");
@@ -121,7 +121,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ b,c,d,c}, inv.getItems());
 		}
 
-		TEST_METHOD(RemoveItemsWithSameName2Test)
+		TEST_METHOD(RemoveItemMoreWithSameName2)
 		{
 			Item d = Item("d");
 			Item c = Item("c");
@@ -132,7 +132,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ a,b,d,a,a }, inv.getItems());
 		}
 
-		TEST_METHOD(PlusOperatorWithInvSimple)
+		TEST_METHOD(PlusOpWithInvSimple)
 		{
 			Item c = Item("c");
 			Item b = Item("b");
@@ -147,7 +147,7 @@ namespace InvoiceUnitTest
 			vectorcompare({a,b,a,c}, sum.getItems());
 		}
 
-		TEST_METHOD(PlusOperatorWithInvOtherName)
+		TEST_METHOD(PlusOpWithInvOtherName)
 		{
 			Item c = Item("c");
 			Item b = Item("b");
@@ -162,7 +162,7 @@ namespace InvoiceUnitTest
 			vectorcompare({a,b}, sum.getItems());
 		}
 
-		TEST_METHOD(PlusOperatorWithInvOtherAdress)
+		TEST_METHOD(PlusOpWithInvOtherAdress)
 		{
 			Item c = Item("c");
 			Item b = Item("b");
@@ -177,7 +177,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ a,b }, sum.getItems());
 		}
 
-		TEST_METHOD(MinusOperatorWithInvSimple)
+		TEST_METHOD(MinusOpWithInvSimple)
 		{
 			Item c = Item("c");
 			Item b = Item("b");
@@ -192,7 +192,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ b }, sub.getItems());
 		}
 
-		TEST_METHOD(MinusOperatorWithInvMoreItems)
+		TEST_METHOD(MinusOpWithInvMoreItems)
 		{
 			Item d = Item("d");
 			Item c = Item("c");
@@ -208,7 +208,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ b,d }, sub.getItems());
 		}
 
-		TEST_METHOD(MinusOperatorWithInvNoCommonItems)
+		TEST_METHOD(MinusOpWithInvNoCommonItems)
 		{
 			Item c = Item("c");
 			Item b = Item("b");
@@ -223,7 +223,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ a,b }, sub.getItems());
 		}
 
-		TEST_METHOD(MinusOperatorWithInvWrongAdress)
+		TEST_METHOD(MinusOpWithInvWrongAdress)
 		{
 			Item c = Item("c");
 			Item b = Item("b");
@@ -238,7 +238,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ a,b }, sub.getItems());
 		}
 
-		TEST_METHOD(MinusOperatorWithInvWrongName)
+		TEST_METHOD(MinusOpWithInvWrongName)
 		{
 			Item c = Item("c");
 			Item b = Item("b");
@@ -253,7 +253,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ a,b }, sub.getItems());
 		}
 
-		TEST_METHOD(PlusOperatorWithItemSimple)
+		TEST_METHOD(PlusOpWithItemSimple)
 		{
 			Item c = Item("c");
 			Item b = Item("b");
@@ -267,7 +267,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ a,b,c}, sum.getItems());
 		}
 
-		TEST_METHOD(OperatorMinusWithItemOneItemTest)
+		TEST_METHOD(MinusOpWithItemOneItemTest)
 		{
 			Item Apple = Item("Apple");
 			Invoice inv("Anna", "Warsaw", { Apple });
@@ -275,7 +275,7 @@ namespace InvoiceUnitTest
 			vectorcompare({}, sub.getItems());
 		}
 
-		TEST_METHOD(OperatorMinusWithItemSameNameTest1)
+		TEST_METHOD(MinusOpWithItemSameNameTest1)
 		{
 			Item d = Item("d");
 			Item c = Item("c");
@@ -286,7 +286,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ b,c,d,c }, sub.getItems());
 		}
 
-		TEST_METHOD(OperatorMinusWithItemSameNameTest2)
+		TEST_METHOD(MinusOpWithItemSameNameTest2)
 		{
 			Item d = Item("d");
 			Item c = Item("c");
@@ -311,7 +311,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ a,b,c }, sum.getItems());
 		}
 
-		TEST_METHOD(OperatorMinusEqWithItemOneItemTest)
+		TEST_METHOD(MinusEqOperatorWithItemOneItem)
 		{
 			Item Apple = Item("Apple");
 			Invoice sub("Anna", "Warsaw", { Apple });
@@ -319,7 +319,7 @@ namespace InvoiceUnitTest
 			vectorcompare({}, sub.getItems());
 		}
 
-		TEST_METHOD(OperatorMinusEqWithItemSameNameTest1)
+		TEST_METHOD(MinusEqOperatorWithItemSameName1)
 		{
 			Item d = Item("d");
 			Item c = Item("c");
@@ -330,7 +330,7 @@ namespace InvoiceUnitTest
 			vectorcompare({ b,c,d,c }, sub.getItems());
 		}
 
-		TEST_METHOD(OperatorMinusEqWithItemSameNameTest2)
+		TEST_METHOD(MinusEqOperatorWithItemSameName2)
 		{
 			Item d = Item("d");
 			Item c = Item("c");
