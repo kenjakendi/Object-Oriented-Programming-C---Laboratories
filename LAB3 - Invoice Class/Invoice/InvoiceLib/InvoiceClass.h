@@ -32,6 +32,8 @@ public:
 	void operator+=(std::string const& item_name);
 	void operator-=(std::string const& item_name);
 
-	friend
-	std::ostream& operator<< (std::ostream& os, const Invoice& invoice);
+	friend std::ostream& operator<< (std::ostream& os, const Invoice& invoice);
+	friend std::istream& operator>> (std::istream& is, Invoice& invoice);
 };
+
+

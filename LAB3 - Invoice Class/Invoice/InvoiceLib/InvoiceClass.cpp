@@ -148,17 +148,33 @@ void Invoice::operator-=(std::string const& item_name)
 	removeItem(item_name);
 }
 
-/*
 ostream& operator<< (ostream& os, const Invoice& invoice)
 {
 	string const name = invoice.getName();
 	string const adress = invoice.getAdress();
 	const vector <string> items = invoice.getItems();
-	os << name << "/t" << adress << endl;
+	os << name << " " << adress << endl;
 	for (int i = 0; i < items.size(); i++)
 	{
 		os << items[i] << endl;
 	}
+	os << "end" << endl;
 	return os;
 }
-*/
+
+istream& operator>> (istream& is, Invoice& invoice)
+{
+	string name;
+	string adress;
+	is >> name >> adress;
+	invoice.setName(name);
+	invoice.setAdress(adress);
+	string item;
+	is >> item;
+	while (item != "end")
+	{
+		invoice.addItem(item);
+		is >> item;
+	}
+	return is;
+}
