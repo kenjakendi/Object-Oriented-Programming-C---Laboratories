@@ -105,6 +105,25 @@ Invoice Invoice::operator-(string const& item_name) const
 	return invoice;
 }
 
+void Invoice::operator+=(Invoice const& invoice)
+{
+
+}
+
+void Invoice::operator-=(Invoice const& invoice)
+{
+
+}
+
+void Invoice::operator+=(std::string const& item_name)
+{
+	addItem(item_name);
+}
+
+void Invoice::operator-=(std::string const& item_name)
+{
+	removeItem(item_name);
+}
 /*
 ostream& operator<< (ostream& os, const Invoice& invoice)
 {

@@ -26,10 +26,10 @@ public:
 	Invoice operator+(std::string const& item_name) const;
 	Invoice operator-(std::string const& item_name) const;
 
-	void operator+=(Invoice const& invoice) const;
-	void operator-=(Invoice const& invoice) const;
-	void operator+=(std::string const& item_name) const;
-	void operator-=(std::string const& item_name) const;
+	void operator+=(Invoice const& invoice);
+	void operator-=(Invoice const& invoice);
+	void operator+=(std::string const& item_name);
+	void operator-=(std::string const& item_name);
 
 	friend
 	std::ostream& operator<< (std::ostream& os, const Invoice& invoice);

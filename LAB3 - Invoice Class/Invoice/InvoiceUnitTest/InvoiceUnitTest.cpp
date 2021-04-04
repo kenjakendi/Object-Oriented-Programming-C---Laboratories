@@ -236,6 +236,38 @@ namespace InvoiceUnitTest
 			Invoice sub = inv - "c";
 			vectorcompare({ "a","b","d","a","a" }, sub.getItems());
 		}
+
+		TEST_METHOD(PlusEqOperatorWithItemSimple)
+		{
+			std::string const name = "Anna";
+			std::string const adress = "Warsaw";
+			Invoice sum(name, adress, { "a","b" });
+			sum += "c";
+			Assert::AreEqual(name, sum.getName());
+			Assert::AreEqual(adress, sum.getAdress());
+			vectorcompare({ "a","b","c" }, sum.getItems());
+		}
+
+		TEST_METHOD(OperatorMinusEqWithItemOneItemTest)
+		{
+			Invoice sub("Anna", "Warsaw", { "Apple" });
+			sub -= "Apple";
+			vectorcompare({}, sub.getItems());
+		}
+
+		TEST_METHOD(OperatorMinusEqWithItemSameNameTest1)
+		{
+			Invoice sub("Anna", "Warsaw", { "a","b","c","d","a","c","a" });
+			sub -= "a";
+			vectorcompare({ "b","c","d","c" }, sub.getItems());
+		}
+
+		TEST_METHOD(OperatorMinusEqWithItemSameNameTest2)
+		{
+			Invoice sub("Anna", "Warsaw", { "a","b","c","d","a","c","a" });
+			sub -= "c";
+			vectorcompare({ "a","b","d","a","a" }, sub.getItems());
+		}
 	};
 }
 
