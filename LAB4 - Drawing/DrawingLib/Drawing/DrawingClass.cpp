@@ -3,8 +3,9 @@
 #include <chrono>
 using namespace std;
 
-Drawing::Drawing(float width, float height, vector <IFigure*> collection)
+Drawing::Drawing(string name, float width, float height, vector <IFigure*> collection)
 {
+	this->name = name;
 	this->width = width;
 	this->height = height;
 	this->collection = collection;

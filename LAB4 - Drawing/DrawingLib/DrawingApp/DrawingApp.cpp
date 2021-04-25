@@ -23,7 +23,7 @@ int main()
 	float w = 500;
 	float h = 500;
 	vector <IFigure*> v = { &rec,&c,&l };
-	Drawing draw(w, h, v);
+	Drawing draw("draw1",w, h, v);
 	cout << draw;
 	draw.saveSvg("svg_sample.txt");
 }
