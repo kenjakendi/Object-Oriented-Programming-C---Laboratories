@@ -3,7 +3,7 @@
 #include <chrono>
 using namespace std;
 
-Drawing::Drawing(float width, float height, vector <IFigure> collection)
+Drawing::Drawing(float width, float height, vector <IFigure*> collection)
 {
 	this->width = width;
 	this->height = height;
@@ -17,12 +17,12 @@ time_t Drawing::getTime() const
 	return time;
 }
 
-vector <IFigure> Drawing::getCollection() const
+vector <IFigure*> Drawing::getCollection() const
 {
 	return collection;
 }
 
-void Drawing::setCollection(vector <IFigure> const new_collection)
+void Drawing::setCollection(vector <IFigure*> const new_collection)
 {
 	this->collection = new_collection;
 }
@@ -36,8 +36,22 @@ string Drawing::svgText() const
 	svg_text += str_svg;
 	for (int i = 0; i < collection.size(); i++)
 	{
-		svg_text += collection[i].svgText() + "\n";
+		svg_text += collection[i]->svgText() + "\n";
 	}
 	svg_text += "</svg>\n</body>\n</html>";
 	return svg_text;
+}
+
+void Drawing::saveSvg(string const file_name) const
+{
+	fstream file;
+	file.open(file_name, ios::out);
+	file << *this;
+	file.close();
+}
+
+ostream& operator<<(std::ostream& os, const Drawing& drawing)
+{
+	os << drawing.svgText();
+	return os;
 }

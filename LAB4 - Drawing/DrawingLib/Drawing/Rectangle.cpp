@@ -16,8 +16,16 @@ string Rectangle::svgText() const
 	string str_y = " y=\"" + to_string(y) + "\"";
 	string str_width = " width=\"" + to_string(width) + "\"";
 	string str_height = " height=\"" + to_string(height) + "\"";
-	string str_style = " style=\"" + style + "\"";
-	string svg_text = "<rect" + str_x + str_y + str_width + str_height + str_style + " />";
+	string svg_text = "<rect" + str_x + str_y + str_width + str_height;
+	if (style=="")
+	{
+		svg_text += " />";
+	}
+	else
+	{
+		string str_style = " style=\"" + style + "\"";
+		svg_text += str_style + " />";
+	}
 	return svg_text;
 }
 
