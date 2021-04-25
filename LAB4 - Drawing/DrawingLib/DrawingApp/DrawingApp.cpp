@@ -20,13 +20,12 @@ int main()
 	cout << c << endl;
 	Line l(10, 10, 100, 100, "stroke:rgb(0,0,255);stroke-width:5");
 	cout << l << endl;
-	float w = 500;
-	float h = 500;
+	float const w = 500;
+	float const h = 500;
 	vector <IFigure*> v = { &rec,&c,&l };
 	Drawing draw("draw1",w, h, v);
 	cout << draw;
 	draw.saveSvg("svg_sample.txt");
 	draw.setHeight(600);
-	draw.clearLog();
 	return 0;
 }

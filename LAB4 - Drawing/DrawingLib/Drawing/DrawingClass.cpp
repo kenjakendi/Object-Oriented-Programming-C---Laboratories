@@ -22,7 +22,7 @@ string Drawing::getName() const
 
 void Drawing::setName(string const new_name)
 {
-	string message = name + ": " + "Name has been changed from: " + name + " to: " + new_name;
+	string const message = name + ": " + "Name has been changed from: " + name + " to: " + new_name;
 	saveChange(message);
 	this->name = new_name;
 }
@@ -34,7 +34,7 @@ float Drawing::getWidth() const
 
 void Drawing::setWidth(float const new_width)
 {
-	string message = name + ": " + "Width has been changed from: " + to_string(width) + " to: " + to_string(new_width);
+	string const message = name + ": " + "Width has been changed from: " + to_string(width) + " to: " + to_string(new_width);
 	saveChange(message);
 	this->width = new_width;
 }
@@ -46,9 +46,9 @@ float Drawing::getHeight() const
 
 void Drawing::setHeight(float const new_height)
 {
-	string message = name + ": " + "Height has been changed from: " + to_string(height) + " to: " + to_string(new_height);
+	string const message = name + ": " + "Height has been changed from: " + to_string(height) + " to: " + to_string(new_height);
 	saveChange(message);
-	this->width = new_height;
+	this->height = new_height;
 }
 
 vector <IFigure*> Drawing::getCollection() const
@@ -58,7 +58,7 @@ vector <IFigure*> Drawing::getCollection() const
 
 void Drawing::setCollection(vector <IFigure*> const new_collection)
 {
-	string message = name + ": " + "Collection has been changed";
+	string const message = name + ": " + "Collection has been changed";
 	saveChange(message);
 	this->collection = new_collection;
 }
