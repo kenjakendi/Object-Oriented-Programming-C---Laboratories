@@ -11,11 +11,11 @@ private:
 	float width;
 	float height;
 	std::vector <IFigure*> collection;
-	void saveChange() const;
+	void saveChange(std::string const message) const;
 	std::time_t getTime() const;
 
 public:
-	Drawing(std::string name, float width, float height, std::vector <IFigure*> collection);
+	Drawing(std::string name, float width, float height, std::vector <IFigure*> collection = {});
 	std::string getName() const;
 	float getWidth() const;
 	float getHeight() const;

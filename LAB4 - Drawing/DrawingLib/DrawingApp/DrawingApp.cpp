@@ -26,4 +26,5 @@ int main()
 	Drawing draw("draw1",w, h, v);
 	cout << draw;
 	draw.saveSvg("svg_sample.txt");
+	draw.setHeight(600);
 }
