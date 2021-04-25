@@ -6,14 +6,13 @@
 class Drawing
 {
 private:
-	std::vector <IFigure> collection;
+	std::vector <IFigure*> collection;
 	void saveChange() const;
 	std::time_t getTime() const;
 
 public:
-	Drawing(std::vector <IFigure> collection);
-	std::vector <IFigure> getCollection() const;
-	void setCollection(std::vector <IFigure> const new_collection);
+	Drawing(std::vector <IFigure*> collection);
+	std::vector <IFigure*> getCollection() const;
+	void setCollection(std::vector <IFigure*> const new_collection);
 	void saveSvg() const;
-
 };
