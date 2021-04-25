@@ -15,5 +15,13 @@ using namespace std;
 int main()
 {
 	Rectangle rec(100, 100, 100, 100);
-	cout << rec.svgText();
+	cout << rec << endl;
+	Circle c(100, 100, 100);
+	cout << c << endl;
+	Line l(10, 10, 100, 100);
+	cout << l << endl;
+	float w = 500;
+	float h = 500;
+	vector <IFigure> v = { rec,c,l };
+	Drawing draw(w, h, v);
 }
