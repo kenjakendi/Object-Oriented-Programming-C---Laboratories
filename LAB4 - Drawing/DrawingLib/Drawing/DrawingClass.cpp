@@ -103,6 +103,13 @@ time_t Drawing::getTime() const
 	return time;
 }
 
+void Drawing::clearLog() const
+{
+	fstream file;
+	file.open("logs.txt", ios::out);
+	file.close();
+}
+
 ostream& operator<<(std::ostream& os, const Drawing& drawing)
 {
 	os << drawing.svgText();
