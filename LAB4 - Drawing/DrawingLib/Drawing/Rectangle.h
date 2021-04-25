@@ -9,4 +9,5 @@ class Rectangle :public IFigure
 public:
 	Rectangle(float x, float y, float width, float height, std::string style = "");
 	virtual std::string svgText() const;
+	~Rectangle();
 };
