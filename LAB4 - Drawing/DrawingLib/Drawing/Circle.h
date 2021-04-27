@@ -9,5 +9,6 @@ class Circle :public IFigure
 public:
 	Circle(float cx, float cy, float r, std::string style = "");
 	virtual std::string svgText() const;
+	virtual std::string* getId() const;
 	~Circle();
 };

@@ -29,5 +29,13 @@ string Line::svgText() const
 	return svg_text;
 }
 
+string* Line::getId() const
+{
+	string number_of_figure = "3";
+	string description = "Line, point1 = (" + to_string(x1) + "," + to_string(y1) + ") point2 = (" + to_string(x2) + "," + to_string(y2) + ")";
+	string id[] = { number_of_figure, description };
+	return id;
+}
+
 Line::~Line()
 {}

@@ -27,5 +27,13 @@ string Circle::svgText() const
 	return svg_text;
 }
 
+string* Circle::getId() const
+{
+	string number_of_figure = "2";
+	string description = "Circle, point = (" + to_string(cx) + "," + to_string(cy) + ") radius: " + to_string(r);
+	string id[] = { number_of_figure, description };
+	return id;
+}
+
 Circle::~Circle()
 {}

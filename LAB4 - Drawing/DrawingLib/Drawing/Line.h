@@ -9,5 +9,6 @@ class Line :public IFigure
 public:
 	Line(float x1, float y1, float x2, float y2, std::string style = "");
 	virtual std::string svgText() const;
+	virtual std::string* getId() const;
 	~Line();
 };

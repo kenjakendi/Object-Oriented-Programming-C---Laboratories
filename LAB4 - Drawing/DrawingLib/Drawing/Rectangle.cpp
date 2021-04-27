@@ -29,5 +29,13 @@ string Rectangle::svgText() const
 	return svg_text;
 }
 
+string* Rectangle::getId() const
+{
+	string number_of_figure = "1";
+	string description = "Rectangle, point = ("+to_string(x)+","+to_string(y)+") dimensions: "+to_string(width)+"x"+to_string(height);
+	string id[] = { number_of_figure, description };
+	return id;
+}
+
 Rectangle::~Rectangle()
 {}
