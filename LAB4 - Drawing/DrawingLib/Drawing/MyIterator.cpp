@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-template<typename Collection>
+template<typename T, typename Collection, typename Iterator>
 class FigureCollection : public Collection
 {
 public:
@@ -10,30 +10,30 @@ public:
 	{
 		friend FigureCollection;
 
-		std::vector<IFigure*>::iterator current;
-		std::vector<IFigure*> & collection;
+		Iterator current;
+		Collection & collection;
 
 	public:
 
-		FigureIterator(std::vector<IFigure*>& col, std::vector<IFigure*>::iterator i) : collection(col)
+		FigureIterator(Collection& col, Iterator i) : collection(col)
 		{
 			this->current = i;
 		}
 
 		std::string & operator*()
 		{
-			IFigure* current_figure = *current;
+			T current_figure = *current;
 			return current_figure->getId()[1];
 		}
 
 		int getMaxNumb()
 		{
-			std::vector<IFigure*>::iterator max = collection.begin();
-			IFigure* value_max = *max;
+			Iterator max = collection.begin();
+			T value_max = *max;
 			int max_numb = std::stoi(value_max->getId()[0]);
-			for (std::vector<IFigure*>::iterator i = collection.begin(); i != collection.end(); ++i)
+			for (Iterator i = collection.begin(); i != collection.end(); ++i)
 			{
-				IFigure* value_i = *i;
+				T value_i = *i;
 				int i_numb = std::stoi(value_i->getId()[0]);
 				if (i_numb > max_numb)
 				{
@@ -45,12 +45,12 @@ public:
 
 		FigureIterator& operator++()
 		{
-			IFigure* value_current = *current;
+			T value_current = *current;
 			int current_numb = std::stoi(value_current->getId()[0]);
 
-			for (std::vector<IFigure*>::iterator i = current + 1; i != collection.end(); ++i)
+			for (Iterator i = current + 1; i != collection.end(); ++i)
 			{
-				IFigure* value_i = *i;
+				T value_i = *i;
 				int i_numb = std::stoi(value_i->getId()[0]);
 				if(i_numb==current_numb)
 				{
@@ -59,12 +59,12 @@ public:
 				}
 			}
 
-			std::vector<IFigure*>::iterator min;
+			Iterator min;
 			int max_numb = getMaxNumb();
 			int local_max = max_numb+1;
-			for (std::vector<IFigure*>::iterator i = collection.begin(); i != collection.end(); ++i)
+			for (Iterator i = collection.begin(); i != collection.end(); ++i)
 			{
-				IFigure* value_i = *i;
+				T value_i = *i;
 				int i_numb = std::stoi(value_i->getId()[0]);
 				if (current_numb == max_numb)
 				{
@@ -89,11 +89,11 @@ public:
 
 	FigureIterator myBegin()
 	{
-		std::vector<IFigure*>::iterator min = this->begin();
-		for (std::vector<IFigure*>::iterator i = this->begin(); i != this->end(); ++i)
+		Iterator min = this->begin();
+		for (Iterator i = this->begin(); i != this->end(); ++i)
 		{
-			IFigure* value_i = *i;
-			IFigure* value_min = *min;
+			T value_i = *i;
+			T value_min = *min;
 			int i_numb = std::stoi(value_i->getId()[0]);
 			int min_numb = std::stoi(value_min->getId()[0]);
 			if (i_numb < min_numb)

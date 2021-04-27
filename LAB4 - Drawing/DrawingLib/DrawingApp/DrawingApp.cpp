@@ -27,7 +27,7 @@ int main()
 	//cout << draw;
 	//draw.saveSvg("svg_sample.txt");
 	//draw.setHeight(600);
-	FigureCollection<vector <IFigure*>> col;
+	FigureCollection<IFigure*, vector <IFigure*>, vector <IFigure*>::iterator> col;
 	for (int i = 0; i < v.size(); ++i)
 	{
 		col.push_back(v[i]);
