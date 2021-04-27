@@ -33,7 +33,7 @@ string* Line::getId() const
 {
 	string number_of_figure = "3";
 	string description = "Line, point1 = (" + to_string(x1) + "," + to_string(y1) + ") point2 = (" + to_string(x2) + "," + to_string(y2) + ")";
-	string id[3] = { number_of_figure, description };
+	static string id[3] = { number_of_figure, description };
 	return id;
 }
 

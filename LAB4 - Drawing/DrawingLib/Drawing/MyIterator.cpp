@@ -3,7 +3,7 @@
 #include <vector>
 
 template<typename Collection>
-class FigureCollection : public std::vector<IFigure*>
+class FigureCollection : public Collection
 {
 public:
 	class FigureIterator
@@ -76,8 +76,8 @@ public:
 			{
 				min = i;
 			}
-			return FigureIterator(*this, min);
 		}
+		return FigureIterator(*this, min);
 	}
 
 	FigureIterator myEnd()

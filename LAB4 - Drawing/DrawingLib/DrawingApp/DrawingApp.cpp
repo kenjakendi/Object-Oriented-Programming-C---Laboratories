@@ -22,12 +22,11 @@ int main()
 	//cout << l << endl;
 	float const w = 500;
 	float const h = 500;
-	vector <IFigure*> v = { &rec,&c,&l };
+	vector <IFigure*> v = { &c,&rec,&l };
 	Drawing draw("draw1",w, h, v);
 	//cout << draw;
 	//draw.saveSvg("svg_sample.txt");
 	//draw.setHeight(600);
-	cout << c.getId()[0];
 	FigureCollection<vector <IFigure*>> col;
 	for (int i = 0; i < v.size(); ++i)
 	{
@@ -35,8 +34,12 @@ int main()
 	}
 	for (int i = 0; i < v.size(); ++i)
 	{
-		cout << col[i]->getId()[1] << ",";
+		cout << col[i]->getId()[1] << endl;
 	}
-
+	cout << endl;
+	for (auto i = col.myBegin(); i != col.myEnd(); ++i)
+	{
+		cout << *i << endl;
+	}
 	return 0;
 }

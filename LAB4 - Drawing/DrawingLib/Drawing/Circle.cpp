@@ -31,7 +31,7 @@ string* Circle::getId() const
 {
 	string number_of_figure = "2";
 	string description = "Circle, point = (" + to_string(cx) + "," + to_string(cy) + ") radius: " + to_string(r);
-	string id[3] = { number_of_figure, description };
+	static string id[3] = { number_of_figure, description };
 	return id;
 }
 
