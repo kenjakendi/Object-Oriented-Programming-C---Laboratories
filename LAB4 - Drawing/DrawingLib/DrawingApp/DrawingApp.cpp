@@ -22,7 +22,7 @@ int main()
 	//cout << l << endl;
 	float const w = 500;
 	float const h = 500;
-	vector <IFigure*> v = { &c,&rec,&l };
+	vector <IFigure*> v = { &l,&c,&rec,&l,&c,&rec,&c,&rec,&c,&l,&rec};
 	Drawing draw("draw1",w, h, v);
 	//cout << draw;
 	//draw.saveSvg("svg_sample.txt");

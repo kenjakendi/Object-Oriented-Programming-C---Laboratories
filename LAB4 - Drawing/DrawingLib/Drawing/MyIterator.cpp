@@ -26,6 +26,23 @@ public:
 			return current_figure->getId()[1];
 		}
 
+		int getMaxNumb()
+		{
+			std::vector<IFigure*>::iterator max = collection.begin();
+			IFigure* value_max = *max;
+			int max_numb = std::stoi(value_max->getId()[0]);
+			for (std::vector<IFigure*>::iterator i = collection.begin(); i != collection.end(); ++i)
+			{
+				IFigure* value_i = *i;
+				int i_numb = std::stoi(value_i->getId()[0]);
+				if (i_numb > max_numb)
+				{
+					max_numb = i_numb;
+				}
+			}
+			return max_numb;
+		}
+
 		FigureIterator& operator++()
 		{
 			IFigure* value_current = *current;
@@ -41,17 +58,24 @@ public:
 					return *this;
 				}
 			}
-			std::vector<IFigure*>::iterator min = collection.end();
+
+			std::vector<IFigure*>::iterator min;
+			int max_numb = getMaxNumb();
+			int local_max = max_numb+1;
 			for (std::vector<IFigure*>::iterator i = collection.begin(); i != collection.end(); ++i)
 			{
 				IFigure* value_i = *i;
-				IFigure* value_min = *min;
 				int i_numb = std::stoi(value_i->getId()[0]);
-				int min_numb = std::stoi(value_min->getId()[0]);
-				if ((i_numb > current_numb) && (min == collection.end() || i_numb < min_numb))
+				if (current_numb == max_numb)
+				{
+					min = collection.end();
+				}
+				else if (i_numb > current_numb && i_numb<local_max)
 				{
 					min = i;
+					local_max = i_numb;
 				}
+				
 			}
 			current = min;
 			return *this;

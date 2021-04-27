@@ -11,9 +11,9 @@ private:
 	std::string name;
 	float width;
 	float height;
+	std::vector <IFigure*> collection;
 
 	// Private methods
-	std::vector <IFigure*> collection;
 	void saveChange(std::string const message) const;
 	std::time_t getTime() const;
 

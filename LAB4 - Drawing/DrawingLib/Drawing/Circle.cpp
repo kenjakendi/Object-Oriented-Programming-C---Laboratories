@@ -7,6 +7,7 @@ Circle::Circle(float cx, float cy, float r, string style)
 	this->cy = cy;
 	this->r = r;
 	this->style = style;
+	this->possition_in_collection = 2;
 }
 
 string Circle::svgText() const
@@ -29,7 +30,7 @@ string Circle::svgText() const
 
 string* Circle::getId() const
 {
-	string number_of_figure = "2";
+	string number_of_figure = to_string(possition_in_collection);
 	string description = "Circle, point = (" + to_string(cx) + "," + to_string(cy) + ") radius: " + to_string(r);
 	static string id[3] = { number_of_figure, description };
 	return id;

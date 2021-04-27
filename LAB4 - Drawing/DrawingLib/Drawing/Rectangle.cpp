@@ -8,6 +8,7 @@ Rectangle::Rectangle(float x, float y, float width, float height, string style)
 	this->width = width;
 	this->height = height;
 	this->style = style;
+	this->possition_in_collection = 1;
 }
 
 string Rectangle::svgText() const
@@ -31,7 +32,7 @@ string Rectangle::svgText() const
 
 string* Rectangle::getId() const
 {
-	string number_of_figure = "1";
+	string number_of_figure = to_string(possition_in_collection);
 	string description = "Rectangle, point = ("+to_string(x)+","+to_string(y)+") dimensions: "+to_string(width)+"x"+to_string(height);
 	static string id[3] = { number_of_figure, description };
 	return id;

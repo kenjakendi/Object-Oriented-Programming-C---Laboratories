@@ -4,6 +4,9 @@
 
 class IFigure
 {
+protected:
+	int possition_in_collection;
+
 public:
 	virtual ~IFigure() = 0;
 	virtual std::string svgText() const = 0;

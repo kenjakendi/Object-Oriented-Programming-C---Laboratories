@@ -8,6 +8,7 @@ Line::Line(float x1, float y1, float x2, float y2, string style)
 	this->x2 = x2;
 	this->y2 = y2;
 	this->style = style;
+	this->possition_in_collection = 3;
 }
 
 string Line::svgText() const
@@ -31,7 +32,7 @@ string Line::svgText() const
 
 string* Line::getId() const
 {
-	string number_of_figure = "3";
+	string number_of_figure = to_string(possition_in_collection);
 	string description = "Line, point1 = (" + to_string(x1) + "," + to_string(y1) + ") point2 = (" + to_string(x2) + "," + to_string(y2) + ")";
 	static string id[3] = { number_of_figure, description };
 	return id;
