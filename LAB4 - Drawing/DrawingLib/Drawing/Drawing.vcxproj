@@ -157,6 +157,7 @@
     <ClCompile Include="IFigure.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="MyIterator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />

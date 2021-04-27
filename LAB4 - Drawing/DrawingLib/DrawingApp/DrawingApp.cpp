@@ -9,23 +9,34 @@
 #include "../Drawing/Rectangle.cpp"
 #include "../Drawing/Circle.cpp"
 #include "../Drawing/Line.cpp"
-
+#include "../Drawing/MyIterator.cpp"
 using namespace std;
 
 int main()
 {
 	Rectangle rec(100, 100, 100, 100, "fill:red");
-	cout << rec << endl;
+	//cout << rec << endl;
 	Circle c(100, 100, 100);
-	cout << c << endl;
+	//cout << c << endl;
 	Line l(10, 10, 100, 100, "stroke:rgb(0,0,255);stroke-width:5");
-	cout << l << endl;
+	//cout << l << endl;
 	float const w = 500;
 	float const h = 500;
 	vector <IFigure*> v = { &rec,&c,&l };
 	Drawing draw("draw1",w, h, v);
-	cout << draw;
-	draw.saveSvg("svg_sample.txt");
-	draw.setHeight(600);
+	//cout << draw;
+	//draw.saveSvg("svg_sample.txt");
+	//draw.setHeight(600);
+	cout << c.getId()[0];
+	FigureCollection<vector <IFigure*>> col;
+	for (int i = 0; i < v.size(); ++i)
+	{
+		col.push_back(v[i]);
+	}
+	for (int i = 0; i < v.size(); ++i)
+	{
+		cout << col[i]->getId()[1] << ",";
+	}
+
 	return 0;
 }
