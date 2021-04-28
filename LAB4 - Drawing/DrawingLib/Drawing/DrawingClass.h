@@ -26,7 +26,7 @@ public:
 	float getWidth() const;
 	float getHeight() const;
 	std::vector <IFigure*> getCollection() const;
-	
+
 	// Setters
 	void setName(std::string const new_name);
 	void setWidth(float const new_width);

@@ -32,11 +32,7 @@ int main()
 	{
 		col.push_back(v[i]);
 	}
-	for (int i = 0; i < v.size(); ++i)
-	{
-		cout << col[i]->getId()[1] << endl;
-	}
-	cout << endl;
+
 	for (auto i = col.myBegin(); i != col.myEnd(); ++i)
 	{
 		cout << *i << endl;
